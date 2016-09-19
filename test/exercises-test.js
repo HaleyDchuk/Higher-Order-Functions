@@ -4,7 +4,7 @@ var expect = chai.expect;
 require('mocha-sinon');
 
 // questionable at best
-Object.assign(global, require('./exercises.js'));
+Object.assign(global, require('../src/exercises.js'));
 
 // use to test console output while still allowing console.log
 // to _actually_ output to screen
