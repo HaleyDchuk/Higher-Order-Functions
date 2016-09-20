@@ -2,9 +2,12 @@
   "name": "ait-homework-02",
   "version": "1.0.0",
   "description": "",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^3.0.2",
+    "mocha-sinon": "^1.1.6",
+    "sinon": "^1.17.6"
   },
-  "devDependencies": {},
   "author": "",
   "license": "ISC"
 }
