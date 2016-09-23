@@ -2,7 +2,9 @@
   "name": "ait-homework-02",
   "version": "1.0.0",
   "description": "",
-  "dependencies": {},
+  "dependencies": {
+    "request": "^2.75.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
