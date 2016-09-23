@@ -19,26 +19,26 @@ request(currentURL, function(error, response, body){
 
 	//console.log(body); 
 	var basObj = JSON.parse(body); 
-	games.push(basObj); 
+	// games.push(basObj); 
 
-	console.log("games");
+	// console.log("games");
  
-	// while(currentURL !== ""){ 
-		console.log("inside the while loop");
-		console.log(currentURL);
+	// // while(currentURL !== ""){ 
+	// 	console.log("inside the while loop");
+	// 	console.log(currentURL);
 
-		// games.push(currentURL); 
-		request(currentURL, function(error, response, body){
-			console.log("next request...");
+	// 	// games.push(currentURL); 
+	// 	request(currentURL, function(error, response, body){
+	// 		console.log("next request...");
 
-			basObj = JSON.parse(body); 
-			games.push(basObj);
-			currentURL = basObj.next; 
+	// 		basObj = JSON.parse(body); 
+	// 		games.push(basObj);
+	// 		currentURL = basObj.next; 
 
 
-			console.log(games.length);
-		}.bind(this)); 
-	// }
+	// 		console.log(games.length);
+	// 	}.bind(this)); 
+	// // }
 
 	
 	//console.log(basObj); 
@@ -189,20 +189,43 @@ var playerReboundSum = players.map(function(player){
 	}
 
 
-// //HIGHEST GUARD PERCENTAGE STILL NEEDS WORK NOTHING WORKS HERE EW 
-// var guard = players.filter(function(player){ 
-// 	return player.position_short === 'G'; 
-
-// }); 
-
-// var highestPercentage = guard.map(function(player){
-// 	//return (parseInt((player.free_throws_made)) / (parseInt(player.free_throws_attempted)).toFixed(2); 
-
-// }); 
+//highest guard percentage 
+var guard = []; 
+var w; 
+for(w = 0; w <players.length; w++){ 
+	if(players[w].position_short === 'G'){ 
+		guard.push(players[w]); 
+	}
 
 
-// console.log("HIGHEST PERCENTAGE"); 
-// console.log(highestPercentage); 
+}
+
+var percentage = []; 
+var z; 
+for(z = 0; z < guard.length; z++){ 
+	var a = parseInt(guard[z].three_pointers_made); 
+	var b = parseInt(guard[z].three_pointers_attempted);
+	var fraction = (a/b).toFixed(2); 
+	var p = (fraction * 100).toFixed(2);
+
+ 	percentage.push(p);
+	
+}
+
+var lar = percentage[0]; 
+var larIndex; 
+var u; 
+for(u = 1; u < percentage.length-1; u++){ 
+	if(percentage[u] > lar){ 
+		lar = percentage[u]; 
+		larIndex = u; 
+	}
+}
+
+ console.log("* Guard (G) with the highest 3 point peprcentage: " + guard[larIndex].first_name + " " + guard[larIndex].last_name + " at %" + percentage[larIndex] + " (" + guard[larIndex].three_pointers_made + "/" + guard[larIndex].three_pointers_attempted + ")"); 
+
+
+
 
 var assist = players.filter(function(player){
 	return parseInt(player.assists); 
@@ -235,7 +258,7 @@ if(team2FreeThrows > largest){
 }
 console.log("* " + teamName + " attempted the most free throws... " + loserName + ": " + smallest + " " + teamName + ": " + largest); 
 
-console.log(" "); 
+
  console.log("* " + team1 + " players with more turnovers than assists:"); 
 var team1Turnovers = team1Players.forEach(function(player){
 
@@ -246,7 +269,6 @@ var team1Turnovers = team1Players.forEach(function(player){
 	}
 });
 
-console.log(" "); 
 console.log("* " + team2 + " players with more turnovers than assists:"); 
 var team2Turnovers = team2Players.forEach(function(player){
 
